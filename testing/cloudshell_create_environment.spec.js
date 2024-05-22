@@ -1,15 +1,15 @@
-const check = ($) => {
-  if (
-    $.eventSource == "cloudshell.amazonaws.com" &&
-    $.eventName == "CreateEnvironment"
-  ) {
-    return {
-      output: "A new CloudShell Console has been launched",
-    };
-  }
-};
-
 describe("CloudShell Create Environment detection", function () {
+  const check = ($) => {
+    if (
+      $.eventSource == "cloudshell.amazonaws.com" &&
+      $.eventName == "CreateEnvironment"
+    ) {
+      return {
+        output: "A new CloudShell Console has been launched",
+      };
+    }
+  };
+
   context("when a CreateEnvironment event was received", function () {
     it("returns only the output", function () {
       const result = check(createEnvironmentEvent);
